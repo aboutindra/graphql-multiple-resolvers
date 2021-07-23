@@ -18,8 +18,10 @@
   "homepage": "https://github.com/aboutindra/graphql-multiple-resolvers#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "graphql-server-express": "^1.4.1",
     "graphql-tools": "^7.0.5"
-  }
+  },
+  "type": "module"
 }
