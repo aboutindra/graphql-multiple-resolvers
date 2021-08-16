@@ -1,17 +1,28 @@
-import cors from 'cors';
-import express from 'express';
-import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
-import { makeExecutableSchema } from 'graphql-tools';
+const cors = require('cors');
+const express = require('express');
+const wrapper = require("../helpers/utils/wrapper");
+const { ApolloServer, gql } = require('apollo-server-express');
 
-// import schema from './data/schema';
-// import resolvers from './data/resolvers';
+function AppServer(){
 
-export default function AppServer(){
+    const typeDefs = gql`
+    type Query {
+      hello: String
+    }
+  `;
 
-    this.server = express();
-    this.server.use(cors());
-    this.server.use(express.json())
-    this.server.use(express.urlencoded({ extended: true }))
+    const resolvers = {
+        Query: {
+            hello: () => 'Hello world!',
+        },
+    };
+
+    this.app = express();
+    this.server = new ApolloServer({ typeDefs, resolvers });
+
+    this.app.use(cors());
+    this.app.use(express.json())
+    this.app.use(express.urlencoded({ extended: true }))
 
     // const executableSchema = makeExecutableSchema({
     //     typeDefs: [schema],
@@ -19,14 +30,16 @@ export default function AppServer(){
     // });
     //
     //
-    // this.server.get('/', (req, res) => {
-    //     wrapper.response(res, 'success', wrapper.data('Index'), 'This service is running properly');
-    // });
+    this.app.get('/', (req, res) => {
+        wrapper.response(res, 'success', wrapper.data('Index'), 'This service is running properly');
+    });
 
-    // user.routes(this.server);
+    // Users.routes(this.server);
     // wallet.routes(this.server);
     // camapign.routes(this.server);
     // transaction.routes(this.server);
 
     // databasePooling.init();
 }
+
+module.exports = AppServer;

@@ -16,13 +16,13 @@ const response = (res, type, result, message = '', code = 200) => {
     message = result.err.message || message;
     code = checkErrorCode(result.err);
   }
-  res.send(code,
-    {
-      success: status,
-      data: result.data,
-      message,
-      code
-    });
+  res.status(code)
+      .send({
+        success: status,
+        data: result.data,
+        message,
+        code
+      });
 };
 
 const paginationResponse = (res, type, result, message = '', code = 200) => {
@@ -33,15 +33,14 @@ const paginationResponse = (res, type, result, message = '', code = 200) => {
     data = '';
     message = result.err;
   }
-  res.send(code,
-    {
-      success: status,
-      data,
-      meta: result.meta,
-      code,
-      message
-    }
-  );
+  res.status(code)
+      .send({
+        success: status,
+        data,
+        meta: result.meta,
+        code,
+        message
+      });
 };
 
 const checkErrorCode = (error) => {

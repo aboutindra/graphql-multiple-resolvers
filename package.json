@@ -20,8 +20,22 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "graphql": "^15.5.1",
     "graphql-server-express": "^1.4.1",
-    "graphql-tools": "^7.0.5"
+    "graphql-tools": "^7.0.5",
+    "lodash": "^4.17.21",
+    "pg": "^8.6.0"
   },
-  "type": "module"
+  "devDependencies": {
+    "apollo-server": "^3.0.2",
+    "apollo-server-express": "^3.0.2",
+    "bluebird": "^3.7.2",
+    "casual": "^1.6.2",
+    "confidence": "^5.0.1",
+    "config": "^3.3.6",
+    "dotenv": "^10.0.0",
+    "mongodb": "^4.0.1",
+    "sequelize": "^6.6.5",
+    "validate.js": "^0.13.1"
+  }
 }
